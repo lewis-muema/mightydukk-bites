@@ -1,7 +1,9 @@
 import React from "react";
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const ResultsList = ({ header, results, navigation }) => {
+const ResultsList = ({ header, results }) => {
+  const navigation = useNavigation();
   return (<View>
     <Text style={styles.text}>{ header }</Text>
     <FlatList
@@ -12,7 +14,7 @@ const ResultsList = ({ header, results, navigation }) => {
       style={styles.restaurantList}
       renderItem={({item, index}) =>
         <View style={styles.restaurants}>
-          <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Details', { id: item.id })}>
             <Image style={styles.Img} source={{uri: item.image_url ? item.image_url : 'https://imgur.com/R7mqXKL'}} />
             <Text numberOfLines={1} style={styles.restaurantName}>{ `${item.name}` }</Text>
             <Text style={styles.restaurantDesc}>{ `${item.rating} stars` }, { `${item.review_count} reviews` }</Text>

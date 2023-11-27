@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, RefreshControl, A
 import SearchScreen from "../components/search";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/results";
+import LoadingScreen from "../components/loadingScreen";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, error, searchApi, loading, setRefreshing, refreshing] = useResults();
 
@@ -31,20 +32,13 @@ const HomeScreen = ({ navigation }) => {
           searchApi("restaurants");
         }}
       />
-      { 
-        loading && !refreshing ? 
-        <View style={styles.loadingContainer}>
-          <Text style={styles.loadingTitle}>Fetching Restaurants...</Text>
-          <ActivityIndicator size="large" color="white" />
-        </View> : 
-        <View></View>
-      }
+      <LoadingScreen loading={loading} refreshing={refreshing} />
       <ScrollView style={styles.container} refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
-        { filterPrices(5).length ? <ResultsList header="Awesome" results={filterPrices(5)} navigation={navigation} /> : <View></View>}
-        { filterPrices(4).length ? <ResultsList header="Impressive" results={filterPrices(4)} navigation={navigation} /> : <View></View>}
-        { filterPrices(3).length ? <ResultsList header="Good" results={filterPrices(3)} navigation={navigation} /> : <View></View>}
+        { filterPrices(5).length ? <ResultsList header="Awesome" results={filterPrices(5)} /> : <View></View>}
+        { filterPrices(4).length ? <ResultsList header="Impressive" results={filterPrices(4)} /> : <View></View>}
+        { filterPrices(3).length ? <ResultsList header="Good" results={filterPrices(3)} /> : <View></View>}
         </ScrollView>
     </View>
   )
@@ -57,24 +51,6 @@ const styles = StyleSheet.create({
   },
   container: {
     overflow: "scroll"
-  },
-  loadingContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    bottom: 0,
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 100,
-    backgroundColor: "#000000ad"
-  },
-  loadingTitle: {
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "800",
-    color: "white",
-    marginBottom: 10
   }
 });
 

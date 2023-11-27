@@ -7,6 +7,8 @@ export default () => {
   const [error, setError] = useState([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [business, setBusinsess] = useState({});
+  const [reviews, setReviews] = useState([]);
 
   const searchApi = (val) => {
     setLoading(true);
@@ -28,6 +30,29 @@ export default () => {
     });
   };
 
+  const searchBusiness = (val) => {
+    setLoading(true);
+    yelp.get(`/${val}`).then((res) => {
+      setBusinsess(res.data);
+      setLoading(false);
+      setRefreshing(false);
+      setError('');
+    }).catch((err) => {
+      setError(err.response.data.error.description);
+      setLoading(false);
+      setRefreshing(false);
+    });
+  };
+
+  const getReviews = (val) => {
+    yelp.get(`/${val}/reviews`).then((res) => {
+      setReviews(res.data.reviews);
+      setError('');
+    }).catch((err) => {
+      setError(err.response.data.error.description);
+    });
+  };
+
   useEffect(() => {
     searchApi(defaultVal);
   }, []);
@@ -39,5 +64,9 @@ export default () => {
     loading,
     setRefreshing,
     refreshing,
+    searchBusiness,
+    business,
+    getReviews,
+    reviews,
   ];
 };
