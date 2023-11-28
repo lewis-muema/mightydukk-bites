@@ -9,14 +9,50 @@ export default () => {
   const [refreshing, setRefreshing] = useState(false);
   const [business, setBusinsess] = useState({});
   const [reviews, setReviews] = useState([]);
+  const [country, setCountry] = useState('United States');
+  const countries = [
+    'United States',
+    'Czech Republic',
+    'Denmark',
+    'Austria',
+    'Switzerland',
+    'Germany',
+    'Australia',
+    'Belgium',
+    'Canada',
+    'Switzerland',
+    'United Kingdom',
+    'Hong Kong',
+    'Republic of Ireland',
+    'Malaysia',
+    'New Zealand',
+    'Philippines',
+    'Singapore',
+    'Argentina',
+    'Chile',
+    'Spain',
+    'Mexico',
+    'Finland',
+    'France',
+    'Italy',
+    'Japan',
+    'Norway',
+    'The Netherlands',
+    'Poland',
+    'Brazil',
+    'Portugal',
+    'Sweden',
+    'Turkey',
+    'Taiwan',
+  ];
 
-  const searchApi = (val) => {
+  const searchApi = (val, location) => {
     setLoading(true);
     yelp.get('/search', {
       params: {
         limit: 50,
         term: val,
-        location: 'new york',
+        location,
       },
     }).then((res) => {
       setResults(res.data.businesses);
@@ -54,7 +90,7 @@ export default () => {
   };
 
   useEffect(() => {
-    searchApi(defaultVal);
+    searchApi(defaultVal, country);
   }, []);
 
   return [
@@ -68,5 +104,8 @@ export default () => {
     business,
     getReviews,
     reviews,
+    countries,
+    country,
+    setCountry,
   ];
 };

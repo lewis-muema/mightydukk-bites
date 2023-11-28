@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/mightydukkBites.png",
+      "image": "./assets/bitesSplash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
