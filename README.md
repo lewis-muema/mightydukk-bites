@@ -26,11 +26,4 @@ Paste the key into the following file: ./src/api/yelp.js
 eg, Authorization: 'Bearer Token'
 ```
 
-### App screenshots
-
-![screenshot](./assets/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-11-28%20at%2014.47.44.png)
-![screenshot](./assets/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-11-28%20at%2014.48.08.png)
-![screenshot](./assets/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-11-28%20at%2014.48.13.png)
-![screenshot](./assets/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-11-28%20at%2014.48.27.png)
-![screenshot](./assets/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-11-28%20at%2014.48.31.png)
 
